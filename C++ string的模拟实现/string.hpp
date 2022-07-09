@@ -27,19 +27,53 @@ public:
 	{
 		strcpy(_str, str);
 	}
-	String(const String& str)
-		:_size(strlen(str._str))
-		, _capacity(_size)
-		, _str(new char[_capacity + 1])
-	{
-		strcpy(_str, str._str);
-	}
-	~String() 
+
+	~String()
 	{
 		_capacity = _size = 0;
-		delete[]_str;
-		_str = nullptr;
+		if (_str) {
+			delete[]_str;
+			_str = nullptr;
+		}
 	}
+	////传统写法
+	//String(const String& str)
+	//	:_size(strlen(str._str))
+	//	, _capacity(_size)
+	//	, _str(new char[_capacity + 1])
+	//{
+	//	strcpy(_str, str._str);
+	//}
+	//现代写法
+	String(const String& str)
+	{
+		String tmp(str._str);
+		swap(tmp);
+	}
+	void swap(String& str) {
+		std::swap(_str, str._str);
+		std::swap(_size, str._size);
+		std::swap(_capacity, str._capacity);
+	}
+	////传统写法
+	//String& operator=(const String& str) {
+	//	if (&str != this) {
+	//		char* tmp = new char[str._capacity + 1];
+	//		strcpy(tmp, str._str);
+	//		if(_str)
+	//			delete[]_str;
+	//		_str = tmp;
+	//		_size = str._size;
+	//		_capacity = str._capacity;
+	//	}
+	//		return*this;
+	//}
+	//现代写法
+	String& operator=( String str) {
+		swap(str);
+		return*this;
+	}
+
 	const char& operator[](size_t pos)const {
 		assert(pos < _size + 1);
 		return *(_str + pos);
@@ -47,17 +81,6 @@ public:
 	char& operator[](size_t pos) {
 		assert(pos < _size+1);
 		return *(_str + pos);
-	}
-	String& operator=(const String& str) {
-		if (&str != this) {
-			char* tmp = new char[str._capacity + 1];
-			strcpy(tmp, str._str);
-			delete[]_str;
-			_str = tmp;
-			_size = str._size;
-			_capacity = str._capacity;
-		}
-			return*this;
 	}
 	const char* c_str()const {
 		return _str;
@@ -76,7 +99,8 @@ public:
 			return;
 		char* tmp = new char[(_capacity = n) + 1];
 		strcpy(tmp, _str);
-		delete[]_str;
+		if(_str)
+			delete[]_str;
 		_str = tmp;
 	}
 	void resize(size_t n, const char ch= 0) {
@@ -139,7 +163,7 @@ public:
 	String& erase(size_t pos = 0, size_t len = npos) {
 		assert(pos <= _size);
 		if (len == npos || pos + len >= _size) {
-			_str[pos] = 0;
+			_size=_str[pos] = 0;
 			return *this;
 		}
 		for (size_t cur = pos + len; cur < _size; cur++,pos++) {

@@ -72,6 +72,10 @@ void test_in() {
 }
 int main() {
 	//test_append();
-	test_in();
+	//test_in();
+	//String str1 = "123";
+	String str2 = "321";
+	String str1 = str2;
+	test_append();
 	return 0;
 }
