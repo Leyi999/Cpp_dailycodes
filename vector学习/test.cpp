@@ -1,8 +1,11 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<iostream>
 #include<vector>
+<<<<<<< HEAD
 #include<algorithm>
 
+=======
+>>>>>>> ef9c12eacbfe22e3bd0773cd453ed67a9d4458fb
 using namespace std;
 int main() {
 	
@@ -15,6 +18,7 @@ int main() {
 	for (int i = 0; i <= 10; i++)
 		cout << v1.at(i) << ' ';
 	cout << endl;
+<<<<<<< HEAD
 	for (vector<int>::iterator it = v1.begin(); it != v1.end(); it++)
 		cout << *it << ' ';
 	cout << endl;
@@ -143,5 +147,12 @@ int main() {
 		cout << "rd==rend" << endl;
 	
 	
+=======
+	for (vector<int>::iterator it = v1.begin(); it < v1.end(); it++)
+		cout << *it << ' ';
+	cout << endl;
+	for (int& e : v1)
+		cout << e << ' ';
+>>>>>>> ef9c12eacbfe22e3bd0773cd453ed67a9d4458fb
 	return 0;
 }
