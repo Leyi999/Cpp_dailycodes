@@ -97,7 +97,7 @@ public:
 	//现代写法
 	list<T>(const list& ls) {
 		emptyinit();//这里必须先把哨兵节点加上
-		//不然交换头节点的时候 ls没有头节点可换
+		//不然交换后析构的是随机值 直接g
 
 		list<T>tmp(ls.begin(), ls.end());//构造
 		swap(tmp);//浅拷贝
