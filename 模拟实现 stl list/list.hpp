@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<assert.h>
+#include"reverse_iterator.hpp"
 template<typename T>
 struct list_node {
 	list_node<T>(const T& val = T()) 
@@ -51,10 +52,10 @@ struct list_iterator {
 	Ptr operator ->() {
 		return &_Pnode->_val;
 	}
-	bool operator !=(const self& it) {
+	bool operator !=(const self& it)const {
 		return _Pnode != it._Pnode;
 	}
-	bool operator ==(const self& it) {
+	bool operator ==(const self& it)const {
 		return _Pnode == it._Pnode;
 	}
 
@@ -64,8 +65,12 @@ struct list_iterator {
 template<typename T>
 class list {
 public:
-	typedef list_iterator<T,T&,T*> iterator;
-	typedef list_iterator<T,const T&, const T*>const_iterator;
+	typedef list_iterator<T, T&, T*> iterator;
+	typedef list_iterator<T, const T&, const T*>const_iterator;
+	typedef Reverse_Iterator<iterator, T&, T*> reverse_iterator;
+	typedef Reverse_Iterator<iterator, const T&, const T*> const_reverse_iterator;
+
+
 	typedef list_node<T> Node;
 	void emptyinit() //复用性原则
 	{
@@ -73,7 +78,7 @@ public:
 		_head->_next = _head;
 		_head->_pev = _head;
 	}
-	list<T>() 
+	list<T>()
 	{
 		emptyinit();
 	}
@@ -134,6 +139,23 @@ public:
 	const_iterator end()const {
 		return const_iterator(_head);
 		//return _head->_next; 这样写也可以 单参数不加explicit的构造函数支持隐式类型转换
+	}
+	//反向迭代器
+	const_reverse_iterator rbegin()const {
+		//return const_reverse_iterator(end());
+		return end();//单参构造的隐式类型转换
+	}
+	reverse_iterator rbegin() {
+		//return reverse_iterator(end());
+		return end();
+	}
+	const_reverse_iterator rend()const {
+		//return const_reverse_iterator(begin());
+		return begin();
+	}
+	reverse_iterator rend(){
+		//return reverse_iterator(begin());
+		return begin();
 	}
 	iterator push_back(const T& val) {
 		//复用

@@ -1,12 +1,16 @@
 #pragma once
 #include<string>
 #include<assert.h>
+#include"reverse_iterator.hpp"
 namespace mystl {
 	template<typename T>
 	class vector {
+	public:
 		typedef T* iterator;
 		typedef const T* const_iterator;
-	public:
+		typedef Reverse_Iterator<iterator,T&,T*>reverse_iterator;
+		typedef Reverse_Iterator<iterator,const T&,const T*>const_reverse_iterator;
+
 		const_iterator begin()const {
 			return _start;
 		}
@@ -18,6 +22,18 @@ namespace mystl {
 		}
 		iterator end() {
 			return _finsh;
+		}
+		const_reverse_iterator rbegin()const {
+			return end();
+		}
+		reverse_iterator rbegin() {
+			return end();
+		}
+		const_reverse_iterator rend()const {
+			return begin();
+		}
+		reverse_iterator rend() {
+			return begin();
 		}
 		size_t size()const {
 			return _finsh - _start;
