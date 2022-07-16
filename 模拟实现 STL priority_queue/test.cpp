@@ -9,7 +9,6 @@ struct _less
 		return x < y;
 	}
 };
-
 template<typename Value_type>
 struct _greater
 {
@@ -17,9 +16,15 @@ struct _greater
 		return x > y;
 	}
 };
+bool cmp_int_less(const int x, const  int y) {
+	return x < y;
+}
 int main() {
-	
-	priority_queue<int,vector<int>,_greater<int>>pq;
+	auto pf = &cmp_int_less;
+	//兼容了c的玩法
+	//priority_queue<int,vector<int>,bool(*)(const int,const int)>pq(cmp_int_less);
+	//C++玩法
+	priority_queue<int, vector<int>, _less<int>>pq;
 	if (pq.empty()) {
 		for (int i = 1; i <= 10; i++) {
 			pq.push(i);
