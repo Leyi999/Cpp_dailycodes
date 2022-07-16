@@ -24,11 +24,11 @@ int main() {
 	//兼容了c的玩法
 	//priority_queue<int,vector<int>,bool(*)(const int,const int)>pq(cmp_int_less);
 	//C++玩法
-	priority_queue<int, vector<int>, _less<int>>pq;
-	if (pq.empty()) {
-		for (int i = 1; i <= 10; i++) {
-			pq.push(i);
-		}
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	priority_queue<int, vector<int>, _less<int>>pq(arr,arr+10);
+		//for (int i = 1; i <= 10; i++) {
+		//	pq.push(i);
+		//}
 		for (auto e : pq._c)
 			printf("%d ", e);
 		printf("\n");
@@ -38,7 +38,6 @@ int main() {
 				cout << e << ' ';
 			cout << endl;
 		}
-	}
 	//1字节占位，代价很小 可以说完美替代了函数指针
 	cout << "sizeof _greater: "<<sizeof _greater<double><<" byte";
 	return 0;

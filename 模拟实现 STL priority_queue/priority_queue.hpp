@@ -22,6 +22,15 @@ public:
 	//iterator end() {
 	//	return _c.end();
 	//}
+	template <class InputIterator>
+	priority_queue(InputIterator first, InputIterator last, const Compare& com = Compare())
+		:_c(Container()), _cmp(com)
+	{
+		while (first != last) 
+			_c.push_back(*first++);
+		for (int i = (_c.size() - 1 - 1) / 2; i >= 0; i--)
+			_adjustdown(i);
+	}
 	priority_queue(const Compare& com = Compare())//兼容c的函数指针的玩法
 		:_c(Container()), _cmp(com)
 	{
@@ -73,8 +82,8 @@ public:
 
 	//Container _c;调试时拿上来方便观察数据
 
-private:
 	Container _c;
+private:
 	Compare _cmp;
 
 };
