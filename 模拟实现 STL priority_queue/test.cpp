@@ -21,6 +21,7 @@ bool cmp_int_less(const int x, const  int y) {
 }
 int main() {
 	auto pf = &cmp_int_less;
+
 	//兼容了c的玩法
 	//priority_queue<int,vector<int>,bool(*)(const int,const int)>pq(cmp_int_less);
 	//C++玩法

@@ -11,6 +11,7 @@ using namespace std;
 //模板参数 Compare可以自动推，1.你传函数指针我就是函数指针类型 再构造函数时你传给我，我按照你传递给我的函数指针，我实例化我的比较成员。
 //2.你传仿函数 我就是仿函数对象的自定义类型，在构造时我默认调用Compare的默认构造函数实例化，没毛病。
 //3.但是如果你模板参数传函数指针类型 但是你在构造时不把函数指针传给我，那就会自动调用函数指针的默认构造就是nullptr，报错。
+
 template <typename Value_type,typename Container =vector<Value_type>,typename Compare=less<Value_type>>
 class priority_queue {
 public:
@@ -70,8 +71,9 @@ public:
 		return _c.empty();
 	}
 	//Container _c;调试时拿上来方便观察数据
-private:
+
 	Container _c;
+private:
 	Compare _cmp;
 
 };
