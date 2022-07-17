@@ -1,5 +1,6 @@
 #pragma once
 //萃取 实现一个萃取类 让这个类利用特化 处理不同类型，最后直接从萃取类里面拿结果
+//使用萃取类就不用把Reverse_Iterator copy几个特化出来 
 template<typename Iterator>
 struct Iterator_traits {//自定义类型的iterator和const_iterator是两个类型所以不需要分开萃取（特化）
 	typedef typename Iterator::Ref				Ref;
