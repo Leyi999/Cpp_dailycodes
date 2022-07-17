@@ -131,7 +131,18 @@ void test4() {
 
 
 }
+void test5() {//²âÊÔ·´Ïòµü´úÆ÷
+	vector<int> v1;
+	v1.push_back(1);
+	v1.push_back(2);
+	v1.push_back(3);
+	v1.push_back(4);
+	v1.push_back(5);
+	v1.push_back(6);
+	for (auto rit = v1.rbegin(); rit != v1.rend(); rit++)
+		cout << *rit << ' ';
+}
 int main() {
-	test4();
+	test5();
 	return 0;
 }

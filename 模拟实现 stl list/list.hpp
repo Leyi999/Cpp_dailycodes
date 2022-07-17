@@ -17,10 +17,13 @@ struct list_node {
 //提高复用性
 //iterator 和 const_iterator复用模板
 //哪里要有变化哪里级添加一个模板参数
-template<typename T,typename Ref,typename Ptr>
+//template<typename T,typename Ref,typename Ptr>
+template<typename T, typename Ref, typename Ptr>
 struct list_iterator {
 	typedef list_node<T> Node;
 	typedef list_iterator self;
+	typedef Ref Ref;
+	typedef Ptr Ptr;
 	//无需写拷贝构造和赋值重载 默认生成的浅拷贝够用了
 	//无需写析构函数，只是借助_pnode访问节点 无需释放
 	list_iterator<T,Ref,Ptr>(Node*const Pnode) : _Pnode(Pnode) {
@@ -67,8 +70,8 @@ class list {
 public:
 	typedef list_iterator<T, T&, T*> iterator;
 	typedef list_iterator<T, const T&, const T*>const_iterator;
-	typedef Reverse_Iterator<iterator, T&, T*> reverse_iterator;
-	typedef Reverse_Iterator<iterator, const T&, const T*> const_reverse_iterator;
+	typedef Reverse_Iterator<iterator> reverse_iterator;
+	typedef Reverse_Iterator<const_iterator> const_reverse_iterator;
 
 
 	typedef list_node<T> Node;

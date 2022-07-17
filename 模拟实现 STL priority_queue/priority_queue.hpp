@@ -37,7 +37,7 @@ public:
 		;
 	}
 	void _adjustup(size_t pos) {
-		size_t parent = (pos - 1) / 2;
+		size_t parent = (pos - 1) / 2;//这里可以用size_t因为pos必须>0才会继续，每次循环结束pos和parent交换
 		while (pos>0&&_cmp(_c[parent] , _c[pos])) {
 			swap(_c[parent], _c[pos]);
 			pos = parent;

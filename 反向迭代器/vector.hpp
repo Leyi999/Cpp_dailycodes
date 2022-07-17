@@ -8,8 +8,8 @@ namespace mystl {
 	public:
 		typedef T* iterator;
 		typedef const T* const_iterator;
-		typedef Reverse_Iterator<iterator,T&,T*>reverse_iterator;
-		typedef Reverse_Iterator<iterator,const T&,const T*>const_reverse_iterator;
+		typedef Reverse_Iterator<iterator>reverse_iterator;
+		typedef Reverse_Iterator<const_iterator>const_reverse_iterator;
 
 		const_iterator begin()const {
 			return _start;
