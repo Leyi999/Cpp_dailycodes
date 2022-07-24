@@ -34,13 +34,15 @@ private:
 };
 class teacher : virtual public person {
 public:
+	int _teacherid = 13;
 	teacher(int age) :person(age) { ; }
 };
 class student : virtual public person {
 public:
+	int _studentid = 44;
 	student(int age) :person(age) { ; }
 };
-class worker :public teacher, public student {
+class worker :virtual public teacher,virtual public student {
 public:
 	worker() :_age(20),teacher(19),student(20),person(30){ ; }
 	int _age;
