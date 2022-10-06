@@ -70,12 +70,16 @@ void test_in() {
 	cin >> str;
 	cout << str;
 }
+void func(const string& str) {
+	cout << str;
+}
 int main() {
 	//test_append();
 	//test_in();
 	//String str1 = "123";
 	String str2 = "321";
 	String str1 = str2;
-	test_append();
+	/*test_append();*/
+	func("hehe");
 	return 0;
 }
