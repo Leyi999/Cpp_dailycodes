@@ -14,6 +14,17 @@ public:
 	{
 		;
 	}
+	Date(initializer_list<int>il)
+		:_year(3), _month(2), _day(1)
+	{
+		;
+	}
+	Date(Date&& d) {
+		swap(_year,d._year);
+		swap(_month, d._month);
+		swap(_day, d._day);
+		cout << "拷贝构造";
+	}
 	int _year;
 	int _month;
 	int _day;
@@ -36,9 +47,20 @@ int main() {
 			//就算没有initializer_list的构造函数重载也可以
 			//但如果有能匹配上的参数为initial_list的构造如“Date(initializer_list<int或者double>il)”
 			// 便不会隐式转换，转而调用以有的。
+			//il 优先 如果没有匹配的il构造就会隐式类型转换，但一般会被优化为直接构造
 	Date d = { { 2022,10,6} };
 			//先是多参数的隐式转换 构造一个date临时对象放入initializer_list中
+			// 因为有il<int>，会用il<int>构造临时对象
 			//然后用initializer_list<date> 构造d
 	cout << d._year << ' ' << d._month << ' ' << d._day << endl;
+	//基础补充
+	double e = 1.0;
+	int&& f = e;
+	const int& g = e;
+	/*E0434	无法用 "double" 类型的值初始化 "int &" 类型的引用(非常量限定)	
+	int& h =e;*/
+	            //任何类型转换都会生成临时变量
+				//这个临时变量是右值，具有常性
+				//只能用 const& 或者 &&来引用
 	return 0;
 }
