@@ -2,6 +2,7 @@
 #include"string.hpp"
 #include<string>
 using namespace std;
+
 void test_pushback() {
 	const String str1;
 	String str2(str1);
@@ -45,7 +46,7 @@ void test_ed() {
 		cout << *it << ' ';
 	}
 	cout << endl;
-	//±éÀúfor
+	//Â±Ã©Ã€Ãºfor
 	for (auto& e : str1) {
 		cout << e << ' ';
 	}
