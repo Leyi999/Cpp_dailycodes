@@ -25,7 +25,8 @@ int main() {
 		 //try 和 throw 不能省略{}
 		
 		int* tmp = getarr(10);
-		try {
+		try {//为了防止下面这段代码抛异常导致 tmp内存泄漏
+			//主动try catch 处理一下
 			int* arr = getarr(1000000000000);
 			for (int i = 0; i < 10; i++)
 				cout << arr[i];
