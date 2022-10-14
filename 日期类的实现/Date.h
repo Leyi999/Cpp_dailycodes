@@ -4,6 +4,8 @@
 using std::cin;
 using std::cout;
 class Date {
+	friend std::istream& operator >>(std::istream& in, Date& d);
+	friend std::ostream& operator <<(std::ostream& out, const Date& d);
 public:
 	//构造函数（全缺省）
 	Date(int year = 2022, int month = 5, int day = 20);

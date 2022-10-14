@@ -15,6 +15,7 @@ Date::Date(const Date& d) {
 	_month = d._month;
 	_day = d._day;
 }
+//移动构造 , 移动赋值 都是内置类型 不需要实现 
 //判断日期是否合法
 bool Date::IsLegalDate(const int year, const int month, const int day)const {
 	if (year <= 0 || (month <= 0 && month > 12) || (day <= 0 || day > GetMonthDay(year, month)))
@@ -107,4 +108,10 @@ bool Date::operator==(const Date& d) const{
 }
 bool Date::operator>(const Date& d) const{
 	return _year > d._year ? true : (_year == d._year ? (_month > d._month ? true : (_month == d._month ? (_day > d._day) : false)) : false);
+}
+std::ostream& operator <<(std::ostream& out, const Date& d){
+	return out << d._year << ' ' << d._month << ' ' << d._day;
+}
+std::istream& operator >>(std::istream& in, Date& d) {
+	return in >> d._year >> d._month >> d._day; 
 }
