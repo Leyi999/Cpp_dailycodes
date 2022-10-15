@@ -19,11 +19,19 @@ public:
 	{
 		;
 	}
-	Date(Date&& d) {
+	Date(Date&& d)noexcept {
 		swap(_year,d._year);
 		swap(_month, d._month);
 		swap(_day, d._day);
 		cout << "拷贝构造";
+	}
+	operator bool() {
+		if (_year)
+			return true;
+		return false;
+	}
+	operator int() {
+		return _year + _month + _day;
 	}
 	int _year;
 	int _month;
@@ -60,7 +68,14 @@ int main() {
 	/*E0434	无法用 "double" 类型的值初始化 "int &" 类型的引用(非常量限定)	
 	int& h =e;*/
 	            //任何类型转换都会生成临时变量
+				//兼容c里 相似意义类型可以隐式转换的规则
 				//这个临时变量是右值，具有常性
 				//只能用 const& 或者 &&来引用
+//////////////////////////////////////////////////////////////////////////////////////
+	//自定义类型隐式转换为其他类型（包括内置类型）
+	//要求重载类型转换运算符
+	int x = d;//int
+	if(d)//重载隐式类型转换为bool值
+	printf("\n%d\n", x);
 	return 0;
 }
