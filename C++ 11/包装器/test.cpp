@@ -68,6 +68,35 @@ int main() {
 	//使用场景 
 	//命令 对应 方法
 	// 如oj题 逆波兰表达式求值
+	// #include<stack>
+	//#include<iostream>
+	//#include<functional>
+	//#include<unordered_map>
+	//	using namespace std;
+	//	class Solution {
+	//	public:
+	//		int evalRPN(vector<string>& tokens) {
+	//			unordered_map<string, function<long long(long long, long long)>> umap;
+	//			umap["+"] = [](long long a, long long b) {return a + b; };
+	//			umap["-"] = [](long long a, long long b) {return a - b; };
+	//			umap["*"] = [](long long a, long long b) {return a * b; };
+	//			umap["/"] = [](long long a, long long b) {return a / b; };
+	//			stack<long long> st1;
+	//			for (auto& e : tokens) {
+	//				if (e != "+" && e != "-" && e != "*" && e != "/") {
+	//					st1.push(stoi(e));
+	//				}
+	//				else {
+	//					long long b = st1.top();//先拿b在拿a 保证左右操作数正确
+	//					st1.pop();
+	//					long long a = st1.top();
+	//					st1.pop();
+	//					st1.push(umap[e](a, b));
+	//				}
+	//			}
+	//			return st1.top();
+	//		}
+	//	};
 	//
 	unordered_map<string, function<int(int, int)>> opumap;
 	opumap["函数指针"] = f1;
